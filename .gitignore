@@ -1,3 +1,8 @@
+# IDE stuff
+.vscode/
+
 # Test files
 *.out
 test.*
+
+
