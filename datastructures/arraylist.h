@@ -1,0 +1,119 @@
+#pragma once
+
+#include "jutils_common.h"
+
+#define DEFAULT_ARRAYLIST_INIT_CAPACITY 8
+
+/**
+ * Type definition for arraylists. They will be dynamically resized upon adding
+ * an element that would cause the size to exceed the capcity. This data
+ * structure is not threadsafe.
+*/
+typedef struct arraylist {
+    ju_size_t size;
+    ju_size_t capacity;
+    ju_size_t element_size;
+    comparison_func_t comparator;
+    void *data;
+} arraylist_t;
+
+/**
+ * Appends an element to the end of arraylist.
+ * 
+ * @param al Arraylist that will be added to.
+ * @param new_e Element that will be appended to the end of the arraylist.
+*/
+void al_add(arraylist_t *al, void *new_e);
+
+/**
+ * Removes all elements from the arraylist.
+ * 
+ * @param al Pointer to the arraylist to be cleared.
+*/
+void al_clear(arraylist_t *al);
+
+/**
+ * Checks if the arraylist contains the target element. Searches by value so
+ * the given target pointer does not have to be (but can be) a pointer to an
+ * an existing element in the list.
+ * 
+ * @param al Pointer to the arraylist that will be searched.
+ * @param target Pointer to the element that will be searched for.
+ * 
+ * @returns True (i.e. 1) if the element is in the arraylist, otherwise False
+ * (i.e. 0).
+*/
+boolean al_contains(arraylist_t *al, void *target);
+
+/**
+ * Creates an arraylist that will store elements of the specified size.
+ * Initializes the capacity to the given initial capacity. Will allocate space
+ * for the arraylist on the heap such that al_destroy must be called to avoid
+ * memory leaks.
+ * 
+ * @param comparator Function that defines the comparison relation between data
+ * elements.
+ * @param initial_capacity The initial capacity of the arraylist.
+ * @param elem_size The size of the data elements that the arraylist will hold.
+ * 
+ * @returns Pointer to the initialized arraylist.
+*/
+arraylist_t *al_create(comparison_func_t *comparator, const ju_size_t init_capacity, const ju_size_t elem_size);
+
+/**
+ * Creates an array list that will store elements of the specified size.
+ * Initializes the capacity to the default capacity of 8. Will allocate space
+ * for the arraylist on the heap such that al_destroy must be called to avoid
+ * memory leaks.
+ * 
+ * @param comparator Function that defines the comparison relation between data
+ * elements.
+ * @param elem_size The size of the data elements that the arraylist will hold.
+ * 
+ * @returns Pointer to the initialized arraylist.
+*/
+arraylist_t *al_create_default(comparison_func_t* comparator, const ju_size_t elem_size);
+
+/**
+ * Destroys the arraylist at the given pointer and frees the heap memory
+ * associated with it.
+ * 
+ * @param al Pointer to the arraylist that will be destroyed.
+*/
+void al_destroy(arraylist_t *al);
+
+/**
+ * Gets the element at the given index from the arraylist or NULL if the index
+ * is out of bounds: if index < 0 or >= 
+ * 
+ * @param al Pointer to the arraylist that will be operated on.
+ * @param index Index of the target element in the arraylist.
+ * 
+ * @returns The target element or NULL.
+*/
+void *al_get(arraylist_t *al, const ju_size_t index);
+
+/**
+ * Finds the index of the given element in the arraylist or -1 if the element
+ * is not present. Searches by value so the given target pointer does not
+ * have to be (but can be) a pointer to an existing element in the list.
+ * 
+ * @param al Pointer to the arraylist that will be operated on.
+ * @param target Pointer to the element that will be searched for.
+ * 
+ * @returns Index of the target element in the arraylist or -1.
+*/
+int al_index_of(arraylist_t *al, void *target);
+
+/**
+ * 
+*/
+void al_remove_at(arraylist_t *al, ju_size_t index);
+
+void al_remove_elem(arraylist_t *al, void *elem);
+
+void al_replace(arraylist_t *al, void *old_e, const void *new_e);
+
+ju_size_t al_size(arraylist_t *al);
+
+void al_sort(arraylist_t *al);
