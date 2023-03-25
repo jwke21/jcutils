@@ -1,2 +1,5 @@
-# Test executables
+# Test files
 *.out
+test.*
+
+
