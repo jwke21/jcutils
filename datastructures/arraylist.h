@@ -10,20 +10,21 @@
  * structure is not threadsafe.
 */
 typedef struct arraylist {
-    ju_size_t size;
-    ju_size_t capacity;
-    ju_size_t element_size;
+    size_t size;
+    size_t capacity;
+    size_t element_size;
     comparison_func_t comparator;
     void *data;
 } arraylist_t;
 
 /**
- * Appends an element to the end of arraylist.
+ * Appends an element to the end of arraylist. Creates a deep copy of the
+ * element in the arraylist.
  * 
  * @param al Arraylist that will be added to.
  * @param new_e Element that will be appended to the end of the arraylist.
 */
-void al_add(arraylist_t *al, void *new_e);
+void al_add(arraylist_t *al, const void *new_e);
 
 /**
  * Removes all elements from the arraylist.
@@ -43,7 +44,7 @@ void al_clear(arraylist_t *al);
  * @returns True (i.e. 1) if the element is in the arraylist, otherwise False
  * (i.e. 0).
 */
-boolean al_contains(arraylist_t *al, void *target);
+boolean al_contains(arraylist_t *al, const void *target);
 
 /**
  * Creates an arraylist that will store elements of the specified size.
@@ -58,7 +59,7 @@ boolean al_contains(arraylist_t *al, void *target);
  * 
  * @returns Pointer to the initialized arraylist.
 */
-arraylist_t *al_create(comparison_func_t *comparator, const ju_size_t init_capacity, const ju_size_t elem_size);
+arraylist_t *al_create(comparison_func_t comparator, const size_t init_capacity, const size_t elem_size);
 
 /**
  * Creates an array list that will store elements of the specified size.
@@ -72,7 +73,7 @@ arraylist_t *al_create(comparison_func_t *comparator, const ju_size_t init_capac
  * 
  * @returns Pointer to the initialized arraylist.
 */
-arraylist_t *al_create_default(comparison_func_t* comparator, const ju_size_t elem_size);
+arraylist_t *al_create_default(comparison_func_t comparator, const size_t elem_size);
 
 /**
  * Destroys the arraylist at the given pointer and frees the heap memory
@@ -83,15 +84,17 @@ arraylist_t *al_create_default(comparison_func_t* comparator, const ju_size_t el
 void al_destroy(arraylist_t *al);
 
 /**
- * Gets the element at the given index from the arraylist or NULL if the index
- * is out of bounds: if index < 0 or >= 
+ * Copies the element at the given index from the arraylist into the given
+ * buffer. Will not modify the buffer if the index is out of bounds: if index
+ * < 0 or >= size.
  * 
  * @param al Pointer to the arraylist that will be operated on.
  * @param index Index of the target element in the arraylist.
+ * @param buf Buffer that arraylist element will be copied into.
  * 
- * @returns The target element or NULL.
+ * @returns The buffer pointer.
 */
-void *al_get(arraylist_t *al, const ju_size_t index);
+void *al_get(arraylist_t *al, const size_t index, void *buf);
 
 /**
  * Finds the index of the given element in the arraylist or -1 if the element
@@ -103,17 +106,17 @@ void *al_get(arraylist_t *al, const ju_size_t index);
  * 
  * @returns Index of the target element in the arraylist or -1.
 */
-int al_index_of(arraylist_t *al, void *target);
+int al_index_of(arraylist_t *al, const void *target);
 
 /**
  * 
 */
-void al_remove_at(arraylist_t *al, ju_size_t index);
+void al_remove_at(arraylist_t *al, const size_t index);
 
-void al_remove_elem(arraylist_t *al, void *elem);
+void al_remove_elem(arraylist_t *al, const void *target);
 
-void al_replace(arraylist_t *al, void *old_e, const void *new_e);
+void al_replace(arraylist_t *al, const size_t old_e_i, const void *new_e);
 
-ju_size_t al_size(arraylist_t *al);
+size_t al_size(arraylist_t *al);
 
 void al_sort(arraylist_t *al);
