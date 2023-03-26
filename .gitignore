@@ -5,4 +5,5 @@
 *.out
 test.*
 
-
+# GCC precompiled headers
+*.gch
