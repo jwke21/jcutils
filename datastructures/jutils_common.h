@@ -17,6 +17,4 @@ typedef enum boolean {
 
 /* Type for functions that define comparisons between two data elements. */
 typedef int (*comparison_func_t)(const void*, const void*);
-/* Type that refers to sizes of something. */
-typedef long unsigned int ju_size_t;
 
