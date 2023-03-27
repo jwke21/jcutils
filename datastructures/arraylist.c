@@ -72,11 +72,11 @@ arraylist_t *al_create_default(comparison_func_t comparator,
 {
     arraylist_t *ret = calloc(1, sizeof(arraylist_t));
     assert(ret != NULL);
-    ret->data = calloc(DEFAULT_ARRAYLIST_INIT_CAPACITY, elem_size);
+    ret->data = calloc(JCU_AL_DEFAULT_INIT_CAPACITY, elem_size);
     assert(ret->data != NULL);
     ret->comparator = comparator;
     assert(ret->comparator != NULL);
-    ret->capacity = DEFAULT_ARRAYLIST_INIT_CAPACITY;
+    ret->capacity = JCU_AL_DEFAULT_INIT_CAPACITY;
     ret->element_size = elem_size;
     return ret;
 }
