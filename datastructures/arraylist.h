@@ -2,7 +2,7 @@
 
 #include "jutils_common.h"
 
-#define DEFAULT_ARRAYLIST_INIT_CAPACITY 8
+#define JCU_AL_DEFAULT_INIT_CAPACITY 8
 
 /**
  * Type definition for arraylists. They will be dynamically resized upon adding
@@ -21,7 +21,7 @@ typedef struct arraylist {
  * Appends an element to the end of arraylist. Creates a deep copy of the
  * element in the arraylist.
  * 
- * @param al Arraylist that will be added to.
+ * @param al Pointer to arraylist that will be added to.
  * @param new_e Element that will be appended to the end of the arraylist.
 */
 void al_add(arraylist_t *al, const void *new_e);
@@ -99,7 +99,7 @@ void *al_get(arraylist_t *al, const size_t index, void *buf);
 /**
  * Finds the index of the given element in the arraylist or -1 if the element
  * is not present. Searches by value so the given target pointer does not
- * have to be (but can be) a pointer to an existing element in the list.
+ * have to be (but can be) a pointer to an existing element in the arraylist.
  * 
  * @param al Pointer to the arraylist that will be operated on.
  * @param target Pointer to the element that will be searched for.
@@ -109,14 +109,49 @@ void *al_get(arraylist_t *al, const size_t index, void *buf);
 int al_index_of(arraylist_t *al, const void *target);
 
 /**
+ * Removes the element at the given element from the arraylist. Does nothing
+ * if the index is out of bounds.
  * 
+ * @param al Pointer to arraylist that will be operated on.
+ * @param index Index of the element that will be removed from the list.
 */
 void al_remove_at(arraylist_t *al, const size_t index);
 
+/**
+ * Removes the first element matching the target at the given pointer from the
+ * arraylist. Searches by value so the given target pointer does not have to be
+ * (but can be) a pointer to an existing element in the arraylist. Does nothing
+ * if there are no elements in the arraylist that match the target.
+ * 
+ * @param al Pointer to arraylist that will be operated on.
+ * @param target Pointer to the element that will be removed from the list.
+ */
 void al_remove_elem(arraylist_t *al, const void *target);
 
+/**
+ * Replace the old element at the given index with the value at the given
+ * new element pointer. Copies the new element's value into the location of
+ * the old element. Does nothing if the index is out of bound.
+ * 
+ * @param al Pointer to the arraylist that will be operated on.
+ * @param old_e_i Index of the element that will be replaced.
+ * @param new_e Pointer to the new element that will replace the old element.
+ */
 void al_replace(arraylist_t *al, const size_t old_e_i, const void *new_e);
 
+/**
+ * The number of elements in the arraylist.
+ * 
+ * @param al Pointer to arraylist whose size will be checked.
+ * 
+ * @return Size of the arraylist (i.e. number of elements).
+ */
 size_t al_size(arraylist_t *al);
 
+/**
+ * Sorts the arraylist in ascending order. Uses the qsort function of stdlib.h.
+ * The comparator function given at initialization is used to define ordering.
+ * 
+ * @param al Pointer to arraylist that will be sorted.
+ */
 void al_sort(arraylist_t *al);
