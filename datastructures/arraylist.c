@@ -3,7 +3,7 @@
 #include "arraylist.h"
 
 // Defines the offset operation into the underlying array
-#define JCU_AL_OFFSET(arr, i, e_size) (arr) + ((i) * (e_size))
+#define JCU_AL_OFFSET(base, i, e_size) (base) + ((i) * (e_size))
 
 /**
  * Helper function that resizes the given array list by doubling the capacity.
