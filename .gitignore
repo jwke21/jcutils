@@ -5,5 +5,8 @@
 *.out
 test.*
 
+# GoogleTest
+googletest/
+
 # GCC precompiled headers
 *.gch
