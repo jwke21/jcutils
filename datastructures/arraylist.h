@@ -1,6 +1,7 @@
-#pragma once
+#ifndef ARRAYLIST_H
+#define ARRAYLIST_H
 
-#include "jutils_common.h"
+#include "jcutils_common.h"
 
 #define JCU_AL_DEFAULT_INIT_CAPACITY 8
 
@@ -155,3 +156,5 @@ size_t al_size(arraylist_t *al);
  * @param al Pointer to arraylist that will be sorted.
  */
 void al_sort(arraylist_t *al);
+
+#endif // ARRAYLIST_H
