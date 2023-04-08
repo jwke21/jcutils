@@ -1,18 +1,24 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.15)
 
 set(This jcutils_tests)
 
 set(Sources
-	jcutils_tests.c
+	arraylist_tests.c
 )
 
 # Makes the program
 add_executable(${This} ${Sources})
+
 # Pull in dependencies
-target_linked_libraries(${This} PUBLIC
-	gtest_main
+target_link_libraries(${This} PUBLIC
 	jcutils
 )
+
+# Include project source directory files
+include_directories(
+	${PROJECT_SOURCE_DIR}
+)
+
 # Inform CMake that this program is a unit test
 add_test(
 	NAME ${This}

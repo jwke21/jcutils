@@ -1,5 +1,5 @@
 # Set minimum version of CMake required
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.15)
 
 # Set variable name This to name of project
 set(This jcutils)
@@ -17,7 +17,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 enable_testing()
 
 # Pull in dependencies
-add_subdirectory(googletest)
+# add_subdirectory(googletest)
 
 # Define Headers variable 
 set(Headers
