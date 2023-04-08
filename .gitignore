@@ -10,3 +10,10 @@ googletest/
 
 # GCC precompiled headers
 *.gch
+
+# CMake stuff
+CMakeFiles/
+*cmake
+*.a
+CMakeCache.txt
+
