@@ -33,7 +33,10 @@ set(Sources
 # Will compile the sources and make them into a library
 add_library(${This} STATIC ${Sources} ${Headers})
 
+# Add the testing subdirectory
 add_subdirectory(test)
 
+# Set the build directory
+set(CMAKE_BINARY_DIR ${PROJECT_SOURCE_DIR}/build)
 
 
