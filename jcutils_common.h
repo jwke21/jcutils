@@ -1,4 +1,5 @@
-#pragma once
+#ifndef JCUTILS_COMMON_H
+#define JCUTILS_COMMON_H
 
 #include <assert.h>
 #include <stdint.h>
@@ -18,3 +19,4 @@ typedef enum boolean {
 /* Type for functions that define comparisons between two data elements. */
 typedef int (*comparison_func_t)(const void*, const void*);
 
+#endif // JCUTILS_COMMON_H

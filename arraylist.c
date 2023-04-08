@@ -1,5 +1,3 @@
-#pragma once
-
 #include "arraylist.h"
 
 // Defines the offset operation into the underlying array
