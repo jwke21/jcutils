@@ -1,5 +1,5 @@
-#include "arraylist_tests.h"
-#include "../datastructures/arraylist.h"
+//#include "arraylist_tests.h"
+#include "arraylist.h"
 
 
 void test_al_add();
