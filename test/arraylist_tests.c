@@ -1,5 +1,6 @@
 //#include "arraylist_tests.h"
 #include "arraylist.h"
+#include "unity.h"
 
 
 void test_al_add();
